@@ -28,7 +28,7 @@ public class UserService {
     @PersistenceContext
     private EntityManager entityManager;
 
-    
+    /*
     @Autowired
     @Transactional(readOnly = false)
     public void makeshiftConstructor() throws Exception {
@@ -50,7 +50,7 @@ public class UserService {
         userRepository.save(newUser);
         
     }
-    
+    */
 
     @Transactional(readOnly = true)
     public List<BookUser> listUsers() {
