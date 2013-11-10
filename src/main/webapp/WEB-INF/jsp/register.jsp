@@ -19,7 +19,8 @@
         <p>
             <a href="${pageContext.request.contextPath}/app/books/">back to book listing</a>
         </p>
-        <br />
+
+        <h1>register a new user account</h1>
 
         <c:if test="${msg != ''}">
             <p>

@@ -233,8 +233,8 @@
 
                 <configuration>
                     
-                    <!--<stopKey>wadaap</stopKey>
-                    <stopPort>8091</stopPort> -->    
+                    <stopKey>wadaap</stopKey>
+                    <stopPort>8091</stopPort>   
                     <stopKey>stop-jetty</stopKey>
                     <stopPort>9090</stopPort>
                                
