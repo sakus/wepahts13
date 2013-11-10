@@ -1,9 +1,0 @@
-wad/template/domain/Book.class
-wad/template/service/UserService.class
-wad/template/repository/BookRepository.class
-wad/template/service/UserAuthenticationProvider.class
-wad/template/controller/BookController.class
-wad/template/service/BookService.class
-wad/template/repository/UserRepository.class
-wad/template/controller/DefaultController.class
-wad/template/domain/BookUser.class
