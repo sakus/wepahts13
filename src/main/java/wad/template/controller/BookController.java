@@ -188,8 +188,8 @@ public class BookController {
             
             // ei löydy mitään, molempiin suoraan N/A
             else {
-                book.setBookCoverThumbnailURL("/WepaHT/img/na_thumbnail.png");
-                book.setBookCoverFullURL("/WepaHT/img/na_largecover.png");
+                book.setBookCoverThumbnailURL("/img/na_thumbnail.png");
+                book.setBookCoverFullURL("/img/na_largecover.png");
             }
             
             // viedään kantaan tässä vaiheessa, että saadaan kirjalle id
