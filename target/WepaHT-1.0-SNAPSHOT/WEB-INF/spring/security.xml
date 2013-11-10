@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"	
+       xmlns:sec="http://www.springframework.org/schema/security"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                            http://www.springframework.org/schema/beans/spring-beans.xsd
+                            http://www.springframework.org/schema/security 
+                            http://www.springframework.org/schema/security/spring-security.xsd">
+    
+    <sec:global-method-security pre-post-annotations="enabled" />
+    
+    <sec:http use-expressions="true">
+        <sec:intercept-url pattern="/app/addbook/**" access="isAuthenticated()" />
+        <sec:intercept-url pattern="/app/populate/**" access="isAuthenticated()" />
+        <sec:intercept-url pattern="/app/rembook/**" access="isAuthenticated()" />
+        <sec:intercept-url pattern="/app/savebook/**" access="isAuthenticated()" />
+        <sec:intercept-url pattern="/app/login/**" access="isAuthenticated()" />
+        <sec:intercept-url pattern="/app/**" access="permitAll" />
+        <sec:form-login />
+        <sec:logout />
+    </sec:http>
+
+    <sec:authentication-manager>
+        <sec:authentication-provider ref="userAuthenticationProvider"/>
+    </sec:authentication-manager>
+        
+</beans>
