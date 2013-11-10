@@ -38,14 +38,14 @@ public class UserAuthenticationProvider implements AuthenticationProvider {
         String username = auth.getName();
         String password = auth.getCredentials().toString();
         
-        // käydään läpi kaikki käyttäjätunnukset
+        // kaydaan lapi kaikki kayttajatunnukset
         for (BookUser user : userService.listUsers()) {
             
             // salasanat on kannassa hash+suolattuna
             MessageDigestPasswordEncoder encoder = new MessageDigestPasswordEncoder("SHA-1");
             String hash = encoder.encodePassword(password, user.getUserSalt());
             
-            // jos kannasta löytyy käyttäjä jossa sekä nimi että passu mätsää, logataan kys. käyttäjä sisään
+            // jos kannasta loytyy kayttaja jossa seka nimi etta passu matsaa, logataan kys. kayttaja sisaan
             if (user.getUserName().equals(username) && user.getUserPassword().equals(hash)) {
                 List<GrantedAuthority> grantedAuths = new ArrayList<GrantedAuthority>();
                 grantedAuths.add(new SimpleGrantedAuthority("registeredUser"));

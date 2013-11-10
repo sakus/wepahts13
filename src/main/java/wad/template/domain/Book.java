@@ -34,7 +34,7 @@ public class Book implements Serializable {
     @NotNull
     private String bookPublishingYear;
     
-    // authorit on nyt kiinteesti niin formit jne oli helpompi tehdä
+    // authorit on nyt kiinteesti niin formit jne oli helpompi tehda
     @NotBlank
     private String bookAuthor1;
     

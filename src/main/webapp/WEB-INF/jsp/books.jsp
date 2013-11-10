@@ -18,13 +18,13 @@
         
         <p>
             
-            <!-- kirjautumaton käyttäjä -->
+            <!-- kirjautumaton kayttaja -->
             <sec:authorize access="isAnonymous()">
                 [ <a href="${pageContext.request.contextPath}/app/register/">register</a> ]
                 [ <a href="${pageContext.request.contextPath}/app/login/">log in</a> ]
             </sec:authorize>
                 
-            <!-- kirjautuneen käyttäjän navigointilinkit -->
+            <!-- kirjautuneen kayttajan navigointilinkit -->
             <sec:authorize access="hasRole('registeredUser')">
                 [ <a href="${pageContext.request.contextPath}/app/addbook/">add book</a> ]
                 [ <a href="${pageContext.request.contextPath}/j_spring_security_logout">log out (${loggedin})</a> ]

@@ -55,7 +55,7 @@ public class BookController {
         
     }
     
-    // hoitaa uuden kirjan lisäämisen
+    // hoitaa uuden kirjan lisaamisen
     @RequestMapping(value = "addbook", method = RequestMethod.POST)
     public String addBook(@Valid @ModelAttribute Book book, BindingResult bindingResult, Model model) {
         
@@ -73,7 +73,7 @@ public class BookController {
         
     }
     
-    // näyttää formin kirjan lisäämiselle
+    // nayttaa formin kirjan lisaamiselle
     @RequestMapping(value = "addbook", method = RequestMethod.GET)
     public String showAddBookForm(@ModelAttribute("book") Book book, @RequestParam(value = "msg", defaultValue = "") String msg, Model model) {
         
@@ -82,25 +82,25 @@ public class BookController {
         
     }
     
-    // noukkii kirjan tiedot ISBN:n perusteella openlibrarystä
+    // noukkii kirjan tiedot ISBN:n perusteella openlibrarysta
     @RequestMapping(value = "populate", method = RequestMethod.POST)
     public String populateBook(@ModelAttribute Book book, Model model) throws Exception {
         
-        // isbn on annettu ainakin jossain moudossa, koitetaan siis löytyykö sillä jotain
+        // isbn on annettu ainakin jossain moudossa, koitetaan siis loytyyko silla jotain
         if (book.getBookISBN() != null && !book.getBookISBN().equals("")) {
             
-            // napataan tietoa openlibrarystä
+            // napataan tietoa openlibrarysta
             RestTemplate restTemplate = new RestTemplate();
             String request = "http://openlibrary.org/api/books?bibkeys=ISBN:" + book.getBookISBN() + "&format=json&jscmd=data";
             String response = restTemplate.getForObject(request, String.class);
             
-            // koitetaan parseta sitä sekamelskaa jotenkin
+            // koitetaan parseta sita sekamelskaa jotenkin
             JSONParser parser = new JSONParser();
             Object obj = parser.parse(response);
             JSONObject obj1 = (JSONObject)obj;
             JSONObject obj2 = (JSONObject)obj1.get("ISBN:" + book.getBookISBN());
             
-            // jos ei tullut mitään fiksua niin voitais tässä vaiheessa heittää käyttäjä bumerangina takasin formiin
+            // jos ei tullut mitaan fiksua niin voitais tassa vaiheessa heittaa kayttaja bumerangina takasin formiin
             if (obj2 == null) {
                 Book newBook = new Book();
                 model.addAttribute("book", newBook);
@@ -108,11 +108,11 @@ public class BookController {
                 return "addbook";
             }
             
-            // muuten aletaan iskemään tietoja paikalleen
+            // muuten aletaan iskemaan tietoja paikalleen
             book.setBookTitle((String)obj2.get("title"));
             book.setBookPublishingYear((String)obj2.get("publish_date"));
             
-            // authorit.. kökköä mutta minkäs teet
+            // authorit.. kokkoa mutta minkas teet
             JSONArray arr1 = (JSONArray)obj2.get("authors");
             
             if (arr1 != null) {
@@ -142,7 +142,7 @@ public class BookController {
 
             }
             
-            // ei yhtäkään authoria openlibraryn mukaan syystä tahi toisesta
+            // ei yhtakaan authoria openlibraryn mukaan syysta tahi toisesta
             else {
                 book.setBookAuthor1("N/A");
             }
@@ -163,7 +163,7 @@ public class BookController {
                 
             }
             
-            // ei publishereita OL:ssä, isketään N/A
+            // ei publishereita OL:ssa, isketaan N/A
             else {
                 book.setBookPublisher1("N/A");
             }
@@ -172,7 +172,7 @@ public class BookController {
             JSONObject obj3 = (JSONObject)obj2.get("cover");
             if (obj3 != null) {
                 
-                // openlibrarystä jos löytyy, muuten "N/A" -kuva
+                // openlibrarysta jos loytyy, muuten "N/A" -kuva
                 String small = (String)obj3.get("small");
                 if (small != null && !small.equals(""))
                     book.setBookCoverThumbnailURL(small);
@@ -186,29 +186,29 @@ public class BookController {
                     book.setBookCoverFullURL("/img/na_largecover.png");
             }
             
-            // ei löydy mitään, molempiin suoraan N/A
+            // ei loydy mitaan, molempiin suoraan N/A
             else {
                 book.setBookCoverThumbnailURL("/img/na_thumbnail.png");
                 book.setBookCoverFullURL("/img/na_largecover.png");
             }
             
-            // viedään kantaan tässä vaiheessa, että saadaan kirjalle id
+            // viedaan kantaan tassa vaiheessa, etta saadaan kirjalle id
             book = bookService.saveBook(book);
             
-            // lisätään valmis kirja modeliin ja ohjataan juuri lisätyn kirjan tietoihin
+            // lisataan valmis kirja modeliin ja ohjataan juuri lisatyn kirjan tietoihin
             model.addAttribute("msg", "the book was saved with the information fetched from open library");
             model.addAttribute("book", book);
             return "book";
             
         }
         
-        // oli vaan hakattu populate-nappia syöttämättä ISBN:ää, palataan samantien takasin formiin
+        // oli vaan hakattu populate-nappia syottamatta ISBN:aa, palataan samantien takasin formiin
         else
             return "addbook";
         
     }
     
-    // näyttää yksittäisen kirjan tiedot
+    // nayttaa yksittaisen kirjan tiedot
     @RequestMapping(value = "books/{id}", method = RequestMethod.GET)
     public String showBook(@PathVariable Long id, Model model, @RequestParam(value = "msg", defaultValue = "") String msg) {
         
@@ -247,8 +247,8 @@ public class BookController {
         
     }
     
-    // login - spring hoitaa, otetaan vian käyttöön polku sitä varten - tähän polkuun on määritelty vaatimus
-    // sisäänkirjautumisesta jolloin spring astuu kuvaan ja kyselee tunnuksia
+    // login - spring hoitaa, otetaan vian kayttoon polku sita varten - tahan polkuun on maaritelty vaatimus
+    // sisaankirjautumisesta jolloin spring astuu kuvaan ja kyselee tunnuksia
     @RequestMapping(value = "login", method = RequestMethod.GET)
     public String dologin() {
     
@@ -264,24 +264,24 @@ public class BookController {
         
     }
     
-    // rekisteröi uuden käyttäjän, jos annetut tiedot on kunnossa
+    // rekisteroi uuden kayttajan, jos annetut tiedot on kunnossa
     @RequestMapping(value="register", method = RequestMethod.POST)
     public String doRegister(Model model, @RequestParam(value = "userName", defaultValue = "") String userName, 
         @RequestParam(value = "password1", defaultValue = "") String password1, 
         @RequestParam(value = "password2", defaultValue = "") String password2) {
         
-        // lähdetään olettamuksesta, että käyttäjänimi on kelpo..
+        // lahdetaan olettamuksesta, etta kayttajanimi on kelpo..
         boolean userNameIsOK = true;
         
-        // .. mutta jos se on tyhjä, ei kelpaa ..
+        // .. mutta jos se on tyhja, ei kelpaa ..
         if (userName.equals(""))
             userNameIsOK = false;
         
-        // .. eikä kelpaa jos on liian lyhyt ..
+        // .. eika kelpaa jos on liian lyhyt ..
         if (userName.length() < 4)
             userNameIsOK = false;
         
-        // .. päästiin läpi tyhjän ja lyhyen nimen tsekistä, katsotaan ettei se ole jo käytössä
+        // .. paastiin lapi tyhjan ja lyhyen nimen tsekista, katsotaan ettei se ole jo kaytossa
         if (userNameIsOK) {
             List<BookUser> allUsers = userService.listUsers();
             for (BookUser user : allUsers) {
@@ -290,13 +290,13 @@ public class BookController {
             }
         }
         
-        // nimi oli kunnossa ja passutkin mätsää joten luodaan käyttäjä
+        // nimi oli kunnossa ja passutkin matsaa joten luodaan kayttaja
         if (userNameIsOK && !password1.equals("") && password1.equals(password2)) {
          
             BookUser newUser = new BookUser();
             newUser.setUserName(userName);
             
-            // passu hashataan sha-ykkösellä ja suolataan timestampilla ennen kantaan viemistä
+            // passu hashataan sha-ykkosella ja suolataan timestampilla ennen kantaan viemista
             newUser.setUserSalt(System.currentTimeMillis());
             MessageDigestPasswordEncoder encoder = new MessageDigestPasswordEncoder("SHA-1");
             String hash = encoder.encodePassword(password1, newUser.getUserSalt());
