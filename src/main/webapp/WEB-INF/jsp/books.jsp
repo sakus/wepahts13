@@ -18,6 +18,8 @@
         
         <p>
             
+            [ <a href="${pageContext.request.contextPath}/app/books/">book listing</a> ]
+            
             <!-- kirjautumaton kayttaja -->
             <sec:authorize access="isAnonymous()">
                 [ <a href="${pageContext.request.contextPath}/app/register/">register</a> ]
@@ -32,14 +34,20 @@
             
         </p>
         
+        <p>
+            <form action="${pageContext.request.contextPath}/app/search" method="POST">
+                search: <input type="text" name="searchQuery" /> <input type="submit" value="search" />
+            </form>    
+        </p>
+        
         <c:if test="${msg != ''}">
             <p>
                 <pre style="color:white;background-color:#333">${msg}</pre>
             </p>
         </c:if>
-        
-        <h1>books in the db</h1>
-        
+            
+        <h1>${listingTitle}</h1>
+            
         <table>
             <c:forEach var="book" items="${books}">
                 <tr>

@@ -7,6 +7,7 @@ package wad.template.service;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -57,4 +58,16 @@ public class BookService {
         
     }
     
+    // case insensitive -haku kirjan nimella
+    @Transactional(readOnly = false)
+    public List<Book> searchBookByName(String searchName) {
+        
+        searchName = searchName.toLowerCase();
+        String queryString = "SELECT a FROM Book a WHERE lower(a.bookTitle) like '%" + searchName + "%'";
+        Query query = entityManager.createQuery(queryString);
+        List<Book> books = query.getResultList();
+        
+        return books;
+        
+    }
 }

@@ -51,6 +51,8 @@ public class BookController {
         String loggedInUser = auth.getName();
         model.addAttribute("loggedin", loggedInUser);
         
+        model.addAttribute("listingTitle", "all books in the db");
+        
         return "books";
         
     }
@@ -333,4 +335,19 @@ public class BookController {
         
     }
     
+    @RequestMapping(value="search",  method = RequestMethod.POST)
+    public String search(Model model, @RequestParam(value = "searchQuery", defaultValue = "") String searchQuery) {
+        
+        List<Book> foundBooks = bookService.searchBookByName(searchQuery);
+        model.addAttribute("books", foundBooks);
+        
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String loggedInUser = auth.getName();
+        model.addAttribute("loggedin", loggedInUser);
+        
+        model.addAttribute("listingTitle", "search results");
+        
+        return "books";
+        
+    }
 }
