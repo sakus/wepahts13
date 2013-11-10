@@ -22,7 +22,7 @@
 
             <p>
                 <form action="${pageContext.request.contextPath}/app/rembook/${book.bookId}" method="POST">
-                    <input type="submit" value="delete book">
+                    <input type="submit" value="delete book" name="deleteBook">
                 </form>
             </p>
 

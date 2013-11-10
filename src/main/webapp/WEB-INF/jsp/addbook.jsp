@@ -34,7 +34,7 @@
         <h3>open library</h3>
         <p>
             <form:form commandName="book" action="${pageContext.request.contextPath}/app/populate" method="POST">
-                ISBN: <form:input path="bookISBN" /> <input type="submit" value="fetch from open library">
+                ISBN: <form:input path="bookISBN" name="bookISBNauto" /> <input type="submit" value="fetch from open library">
             </form:form>
         </p>
         <br />
@@ -48,37 +48,37 @@
             <form:form commandName="book" action="${pageContext.request.contextPath}/app/addbook" method="POST">
                 <th cellspanning="2">the basics</th>
                 <tr>
-                    <td>title:</td><td><form:input path="bookTitle" /><form:errors path="bookTitle" /> <strong>*</strong></td>
+                    <td>title:</td><td><form:input path="bookTitle" name="bookTitle" /><form:errors path="bookTitle" /> <strong>*</strong></td>
                 </tr>
                 <tr>
-                    <td>isbn:</td><td><form:input path="bookISBN" /><form:errors path="bookISBN" /> <strong>*</strong></td>
+                    <td>isbn:</td><td><form:input path="bookISBN" name="bookISBN2" id="bookISBNmanual" /><form:errors path="bookISBN" /> <strong>*</strong></td>
                 </tr>
                 <tr>
-                    <td>published:</td><td><form:input path="bookPublishingYear" /><form:errors path="bookPublishingYear" /> <strong>*</strong></td>
+                    <td>published:</td><td><form:input path="bookPublishingYear" name="bookPublishingYear" /><form:errors path="bookPublishingYear" /> <strong>*</strong></td>
                 </tr>
                 
                 <tr>
-                    <td>publisher 1:</td><td><form:input path="bookPublisher1" value = "${book.bookPublisher1}" /><form:errors path="bookPublisher1" /> <strong>*</strong></td>
+                    <td>publisher 1:</td><td><form:input path="bookPublisher1" name="bookPublisher1" value = "${book.bookPublisher1}" /><form:errors path="bookPublisher1" /> <strong>*</strong></td>
                 </tr>
                 <tr>
-                    <td>publisher 2:</td><td><form:input path="bookPublisher2" value = "${book.bookPublisher2}" /><form:errors path="bookPublisher2" /> </td>
+                    <td>publisher 2:</td><td><form:input path="bookPublisher2" name="bookPublisher2" value = "${book.bookPublisher2}" /><form:errors path="bookPublisher2" /> </td>
                 </tr>
                 
                 <th cellspanning="2"><br />authors</th>
                 <tr>
-                    <td>name:</td><td><form:input path="bookAuthor1" /><form:errors path="bookAuthor1" /> <strong>*</strong></td>
+                    <td>name:</td><td><form:input path="bookAuthor1" name="bookAuthor1" /><form:errors path="bookAuthor1" /> <strong>*</strong></td>
                 </tr>
                 <tr>
-                    <td>name:</td><td><form:input path="bookAuthor2" /><form:errors path="bookAuthor2" /></td>
+                    <td>name:</td><td><form:input path="bookAuthor2" name="bookAuthor2" /><form:errors path="bookAuthor2" /></td>
                 </tr>
                 <tr>
-                    <td>name:</td><td><form:input path="bookAuthor3" /><form:errors path="bookAuthor3" /></td>
+                    <td>name:</td><td><form:input path="bookAuthor3" name="bookAuthor3" /><form:errors path="bookAuthor3" /></td>
                 </tr>
                 <tr>
-                    <td>name:</td><td><form:input path="bookAuthor4" /><form:errors path="bookAuthor4" /></td>
+                    <td>name:</td><td><form:input path="bookAuthor4" name="bookAuthor4" /><form:errors path="bookAuthor4" /></td>
                 </tr>
                 <tr>
-                    <td>name:</td><td><form:input path="bookAuthor5" /><form:errors path="bookAuthor5" /></td>
+                    <td>name:</td><td><form:input path="bookAuthor5" name="bookAuthor5" /><form:errors path="bookAuthor5" /></td>
                 </tr>
                 <th cellspanning="2"><br />cover images (URL)</th>
                 <tr>
@@ -89,7 +89,7 @@
                 </tr>
 
                 <tr>
-                    <td><br /><input type="submit" value="add book"></td>
+                    <td><br /><input type="submit" value="add book" name="addBook"></td>
                 </tr>
             </form:form>
         </table>
