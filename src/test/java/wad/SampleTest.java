@@ -1,13 +1,31 @@
 package wad;
 
+import org.junit.Assert;
 import org.junit.Test;
-import static org.junit.Assert.*;
+import org.junit.Before;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
 public class SampleTest {
 
-    @Test
-    public void sample() {
-        int result = 1 + 1;
-        assertNotEquals("1+1 should not be three", 3, result);
+    private String port;
+    private WebDriver driver;
+    private String baseAddress;
+    
+    @Before
+    public void setUp() {
+        
+        driver = new HtmlUnitDriver();
+        port = System.getProperty("jetty.port", "8090");
+        baseAddress = "http://localhost:" + port + "/app";
     }
+     
+    @Test
+    public void testingTests() {
+    
+        driver.get(baseAddress);
+        Assert.assertTrue(driver.getPageSource().contains("register"));
+        
+    }
+    
 }
