@@ -82,10 +82,10 @@
                 </tr>
                 <th cellspanning="2"><br />cover images (URL)</th>
                 <tr>
-                    <td>thumbnail:</td><td><form:input path="bookCoverThumbnailURL" value = "/WepaHT/img/na_thumbnail.png" /><form:errors path="bookCoverThumbnailURL" /></td>
+                    <td>thumbnail:</td><td><form:input path="bookCoverThumbnailURL" value = "/img/na_thumbnail.png" /><form:errors path="bookCoverThumbnailURL" /></td>
                 </tr>
                 <tr>
-                    <td>large cover:</td><td><form:input path="bookCoverFullURL" value = "/WepaHT/img/na_largecover.png" /><form:errors path="bookCoverFullURL" /></td>
+                    <td>large cover:</td><td><form:input path="bookCoverFullURL" value = "/img/na_largecover.png" /><form:errors path="bookCoverFullURL" /></td>
                 </tr>
 
                 <tr>
